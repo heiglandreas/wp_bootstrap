@@ -1,0 +1,22 @@
+{
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "http://wpackagist.org"
+    }, {
+      "type": "vcs",
+      "url": "/Users/Shared/Development/Sites/wdvWpAddExtraCommentFields/.git"
+    }
+  ], 
+  "require": {
+    "php": ">=5.4",
+    "johnpbloch/wordpress": "^4.3",
+    "wpackagist-plugin/authldap": "^1.4",
+    "wpackagist-theme/twentyfourteen": "^1.5",
+    "wdv_mdv/addcommentfields": "dev-master"
+
+  },
+  "extra": {
+    "wordpress-install-dir": "wp"
+  }
+}
