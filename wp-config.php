@@ -20,28 +20,28 @@
 
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define('DB_NAME', 'wpcomposertest');
+define('DB_NAME', 'wordpress');
 
 /** MySQL database username */
-define('DB_USER', 'wpcomposertest');
+define('DB_USER', 'wpuser');
 
 /** MySQL database password */
-define('DB_PASSWORD', 'wpcomposertest');
+define('DB_PASSWORD', 'wppass');
 
 /** MySQL hostname */
 define('DB_HOST', 'localhost');
 
 /** Database Charset to use in creating database tables. */
-define('DB_CHARSET', 'utf8mb4');
+define('DB_CHARSET', 'utf8');
 
 /** The Database Collate type. Don't change this if in doubt. */
 define('DB_COLLATE', '');
 
 define('ABSPATH', __DIR__ . '/wp/');
-define('WP_SITEURL', 'http://development.local/wpcomposertest/wp');
-define('WP_HOME', 'http://development.local/wpcomposertest/');
+define('WP_SITEURL', 'http://127.0.0.1:8080/wp');
+define('WP_HOME', 'http://127.0.0.1:8080/');
 define('WP_CONTENT_DIR', __DIR__ . '/wp-content');
-define('WP_CONTENT_URL', 'http://development.local/wpcomposertest/wp-content');
+define('WP_CONTENT_URL', 'http://127.0.0.1:8080/wp-content');
 
 /**#@+
  * Authentication Unique Keys and Salts.
