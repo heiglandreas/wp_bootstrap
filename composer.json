@@ -5,7 +5,7 @@
       "url": "http://wpackagist.org"
     }, {
       "type": "vcs",
-      "url": "/Users/Shared/Development/Sites/wdvWpAddExtraCommentFields/.git"
+      "url": "http://dev01.hg.wdv.de/gitlab/mdv/wdvWpAddExtraCommentField.git"
     }
   ], 
   "require": {
