@@ -1,22 +1,26 @@
 {
+  "name": "org_heigl/wordpress_bootstrap",
   "repositories": [
     {
       "type": "composer",
       "url": "http://wpackagist.org"
-    }, {
-      "type": "vcs",
-      "url": "http://dev01.hg.wdv.de/gitlab/mdv/wdvWpAddExtraCommentField.git"
     }
-  ], 
+  ],
   "require": {
     "php": ">=5.4",
     "johnpbloch/wordpress": "^4.3",
     "wpackagist-plugin/authldap": "^1.4",
-    "wpackagist-theme/twentyfourteen": "^1.5",
-    "wdv_mdv/addcommentfields": "dev-master"
-
+    "wpackagist-theme/twentyfourteen": "^1.5"
   },
   "extra": {
     "wordpress-install-dir": "wp"
+  },
+  "scripts": {
+    "post-create-project-cmd": "Org_Heigl\\Wordpress\\Bootstrap\\Installer::postCreateProject"
+  },
+  "autoload" : {
+    "psr-4" : {
+      "Org_Heigl\\Wordpress\\Bootstrap\\" : "src/"
+    }
   }
 }
