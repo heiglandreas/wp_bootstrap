@@ -1,5 +1,6 @@
 {
   "name": "org_heigl/wordpress_bootstrap",
+  "type" : "project",
   "repositories": [
     {
       "type": "composer",
