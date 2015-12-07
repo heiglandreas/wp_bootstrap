@@ -10,8 +10,8 @@
   "require": {
     "php": ">=5.4",
     "johnpbloch/wordpress": "^4.3",
-    "wpackagist-plugin/authldap": "^1.4",
-    "wpackagist-theme/twentyfourteen": "^1.5"
+    "wpackagist-theme/twentyfourteen": "^1.5",
+    "org_heigl/talk_to_composer": "dev-master"
   },
   "extra": {
     "wordpress-install-dir": "wp"
