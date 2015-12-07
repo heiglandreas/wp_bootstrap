@@ -4,7 +4,7 @@
 $install = <<SCRIPT
 export DEBIAN_FRONTEND=noninteractive
 apt-get -yq update
-apt-get -yq --no-install-suggests --no-install-recommends --force-yes install curl apache2 mysql-server-5.6 php5 php5-mysqlnd apparmor-utils
+apt-get -yq --no-install-suggests --no-install-recommends --force-yes install curl apache2 mysql-server-5.6 php5 php5-cli php5-mysqlnd apparmor-utils
 SCRIPT
 
 $configure = <<SCRIPT
@@ -38,9 +38,10 @@ $wp = <<WP
 sudo mkdir -p /usr/local/bin
 sudo curl -o /usr/local/bin/wp https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 sudo chmod 755 /usr/local/bin/wp
-wp core install --url="127.0.0.1" --title="Title" --admin_user="wpadmin" --admin_password="password" --admin_email="me@example.com"
-for i in `wp theme list --field=name`; do wp theme activate $i; done;
-for i in `wp plugin list --field=name`; do wp plugin activate $i; done;
+cd /vagrant
+wp core install --url="127.0.0.1" --allow-root --title="Title" --admin_user="wpadmin" --admin_password="password" --admin_email="me@example.com"
+for i in `wp theme list --allow-root --field=name`; do wp theme activate $i --allow-root; done;
+for i in `wp plugin list --allow-root --field=name`; do wp plugin activate $i --allow-root; done;
 WP
 
 Vagrant.configure(2) do |config|
