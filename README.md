@@ -1,49 +1,46 @@
-# Wordpress-installation
+# Wordpress bootstrap
 
-Dies ist eine test-installation um mal zu sehen, was so alles geht.
+Easy installation of a ready-to-use wordpress using composer and vagrant
+
+## Prerequisites:
+
+for this to work you need a working installation of
+
+ * [composer](https://getcomposer.org)
+ * [Vagrant](https://vagrant.com)
 
 ## Installation
 
-1. Dieses Repository clonen ```git clone reponame wordpresstest```
-2. in das neu erstellte Verzeichnis wechseln: ```cd wordpresstest```
-3. composer ausführen: ```composer install```
-4. VM starten: ```vagrant up```
-5. Im Browser http://127.0.0.1:8080 aufrufen.
-6. Es gibt keinen sechsten Schritt!
+1. Create a new Project: ```composer create-project org_heigl/wordpress_bootstrap my-wordpress-folder```
+2. Answer some questions during the installation.
+3. ```cd``` into the new folder: ```cd my-wordpress-folder```
+4. start the VM: ```vagrant up```
+5. Point your browser to http://127.0.0.1:8080.
+6. There is no step 6
 
-## Plugin-Verwaltung
+You can use "wpadmin" and "password" to log into your fresh wordpress-installation.
 
-Plugins werden nicht über die Wordpress-eigene Verwaltung geladen, sondern über
-composer. Zur Zeit in Planung ist noch ein automatisch installiertes Plugin, das
-aus der Wordpress-CLoud installierte Plugins automatisch in die Composer-Verwaltete
-Installation überträgt.
+## Plugin- and Theme-management
 
-## Theme-Verwaltung
+This installation contains a [plugin](https://github.com/heiglandreas/wp_talkToComposer)
+that keeps activated plugins in sync with your ```composer.json```-file.
 
-Themes werden ebenso nicht über die Wordpress-eigene Verwaltung geladen, sondern
-über composer. Das automatische Plugin würde ebenfalls für installierte Plugins
-einen Eintrag in der composer.json vornehmen.
+Tha tway you can use the wordpress-plugin and theme-repository to find your favourite plugins
+abd themes but you can rest assured that those will be available in your composer.json-file as well
 
-Sowohl bei selbst entwickelten Plugins als auch bei Themes muss in der jeweiligen
-```composer.json``` folgender Eintrag stehen:
+That way you can add this project to your VCS of choice and transfer minimal data
+to any other machine and with a ```composer install``` you will have a copy of your
+wordpress-installation.
 
-    "require": {
-        "composer/installers": "~1.0"
-    },
-    "type": "wordpress-plugin" /* für plugins */
-    "type": "wordpress-theme"  /* für Themes */
+For more informations on how the plugins and themes are added to the composer.json-file
+and how to add your own stuff that is not hosted on the wordpress-repository have a look
+at https://github.com/heiglandreas/wp_talkToComposer
 
+Currently only the setup is automated. If you have further ideas or want to implement
+something feel free to open an issue or pull-request.
 
-Zur Zeit muss für jedes eigen-entwickelte Plugin ein eigener ```repositories```-
-Eintrag in der ```composer.json``` gemacht werden, da es zur Zeit keine
-Satis-Instanz gibt, die die Verwaltung der eigenen Plugins vereinfachen kann.
+## More details:
 
-Nach installation eines plugins muss entweder über die GUI oder über die ```wp```-CLI
-das plugin (oder theme) aktiviert werden.
-
-Datenbankaustausche lasen sich mit der wp-CLI lösen, wobei nur von der Live-Umgebung
-auf die Preview oder lokalen Entwickler-Umbegungen transferiert werden darf,
-nicht umgekehrt.
-
-In wie weit die Uploads synchronisiert werden müssen, steht für mich noch nicht fest.
-
+Wordpress is installed into a folder ```wp``` and the wp_content-folder is taken out
+of that installation and put beside that wp-folder as ```wp-content```. If you want
+to adapt those settings have a look at the ```wp-config.php``` right inside the main folder.
