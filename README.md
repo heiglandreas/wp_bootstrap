@@ -12,7 +12,7 @@ for this to work you need a working installation of
 ## Installation
 
 1. Create a new Project: ```composer create-project org_heigl/wordpress_bootstrap my-wordpress-folder```
-2. Answer some questions during the installation.
+2. Answer some questions during the installation. You can press 'enter' for the default values.
 3. ```cd``` into the new folder: ```cd my-wordpress-folder```
 4. start the VM: ```vagrant up```
 5. Point your browser to http://127.0.0.1:8080.
