@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "853392e383bb291620d5bf04ba87dcc0",
-    "content-hash": "a53a5ae69c56b8ddccb062ffd1ac4475",
+    "hash": "4bf22453c5030f3ebabe1ca2af0763d1",
+    "content-hash": "12fa39864b39017e63e1c2aff918b95e",
     "packages": [
         {
             "name": "composer/installers",
@@ -191,38 +191,46 @@
             "time": "2015-06-11 15:15:30"
         },
         {
-            "name": "wdv_mdv/addcommentfields",
+            "name": "org_heigl/talk_to_composer",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "/Users/Shared/Development/Sites/wdvWpAddExtraCommentFields/.git",
-                "reference": "44cc190fda91772011243fd826a24f3dec867906"
-            },
-            "require": {
-                "composer/installers": "~1.0"
-            },
-            "type": "wordpress-plugin",
-            "time": "2015-11-18 21:51:58"
-        },
-        {
-            "name": "wpackagist-plugin/authldap",
-            "version": "1.4.10",
-            "source": {
-                "type": "svn",
-                "url": "http://plugins.svn.wordpress.org/authldap/",
-                "reference": "trunk"
+                "url": "https://github.com/heiglandreas/wp_talkToComposer.git",
+                "reference": "b2b22f1afc2522ce228faf60693789c531f47805"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/authldap.zip",
-                "reference": null,
-                "shasum": null
+                "url": "https://api.github.com/repos/heiglandreas/wp_talkToComposer/zipball/b2b22f1afc2522ce228faf60693789c531f47805",
+                "reference": "b2b22f1afc2522ce228faf60693789c531f47805",
+                "shasum": ""
             },
             "require": {
-                "composer/installers": "~1.0"
+                "composer/installers": "~1.0",
+                "php": ">=5.5"
             },
             "type": "wordpress-plugin",
-            "homepage": "https://wordpress.org/plugins/authldap/"
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Andreas Heigl",
+                    "email": "andreas@heigl.org",
+                    "homepage": "http://andreas.heigl.org",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Register your currently active plugins with composer",
+            "homepage": "http://github.com/heiglandreas/wp_talkToComposer",
+            "keywords": [
+                "composer",
+                "plugin",
+                "theme",
+                "wordpress",
+                "wp"
+            ],
+            "time": "2015-12-04 16:53:12"
         },
         {
             "name": "wpackagist-theme/twentyfourteen",
@@ -249,7 +257,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "wdv_mdv/addcommentfields": 20
+        "org_heigl/talk_to_composer": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
