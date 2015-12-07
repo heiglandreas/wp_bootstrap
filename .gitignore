@@ -1,3 +1,5 @@
 vendor
+Vagrantfile
+wp-config.php
 wp
 wp-content
