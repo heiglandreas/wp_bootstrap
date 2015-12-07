@@ -62,7 +62,8 @@ class Installer
 
                 return $value;
             },
-            5
+            5,
+            'localhost'
             );
             // ok, continue on to composer install
 
@@ -75,7 +76,8 @@ class Installer
 
                 return $value;
             },
-            5
+            5,
+            'wordpress'
         );
 
         $values['DB_USER'] = $io->askAndValidate(
@@ -87,12 +89,17 @@ class Installer
 
                 return $value;
             },
-            5
+            5,
+            'wpuser'
         );
 
         $values['DB_PASSWORD'] = $io->askAndHideAnswer(
             "Please provide the password for this user: "
         );
+
+        if (! $values['DB_PASSWORD']) {
+            $values['DB_PASSWORD'] == 'wppass';
+        }
 
         $dist = file_get_contents($configfile . '.dist');
         $dist = str_replace(
