@@ -55,7 +55,7 @@ class Installer
         ];
 
         $values['DB_HOST'] = $io->askAndValidate(
-            "Please provide the FQDN for the database-server: ",
+            "Please provide the FQDN for the database-server (localhost): ",
             function($value){
                 if (! filter_var($value, FILTER_SANITIZE_STRING)) {
                     throw new \UnexpectedValueException('Not an URL');
@@ -69,7 +69,7 @@ class Installer
             // ok, continue on to composer install
 
         $values['DB_NAME'] = $io->askAndValidate(
-            "Please provide the name of the database for wordpress: ",
+            "Please provide the name of the database for wordpress (wordpress): ",
             function($value){
                 if (! filter_var($value, FILTER_SANITIZE_STRING)) {
                     throw new \UnexpectedValueException('Invalid');
@@ -82,7 +82,7 @@ class Installer
         );
 
         $values['DB_USER'] = $io->askAndValidate(
-            "Please provide a username with access to the database: ",
+            "Please provide a username with access to the database (wpuser): ",
             function($value){
                 if (! filter_var($value, FILTER_SANITIZE_STRING)) {
                     throw new \UnexpectedValueException('Invalid');
@@ -95,7 +95,7 @@ class Installer
         );
 
         $values['DB_PASSWORD'] = $io->askAndHideAnswer(
-            "Please provide the password for this user: "
+            "Please provide the password for this user (wppass): "
         );
 
         if (! $values['DB_PASSWORD']) {
@@ -103,7 +103,7 @@ class Installer
         }
 
         $values['PORT'] = $io->askAndValidate(
-            "Please provide a port to the webserver if you do not want to use the default: ",
+            "Please provide a port to the webserver if you do not want to use the default (8080): ",
             function($value){
                 if (! filter_var($value, FILTER_SANITIZE_NUMBER_INT)) {
                     throw new \UnexpectedValueException('Invalid');
@@ -143,7 +143,7 @@ class Installer
         exec("vagrant up");
 
         $io->write(sprintf(
-            'You can now open the URL <success>http://127.0.0.1:%s</success> in your favourite WebBroweser',
+            'You can now open the URL <success>http://127.0.0.1:%s</success> in your favourite WebBrowser',
             $values['PORT']
         ));
 
