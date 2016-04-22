@@ -51,6 +51,7 @@ class Installer
             'DB_USER' => '',
             'DB_PASSWORD' => '',
             'DB_NAME' => '',
+            'PORT' => '8080'
         ];
 
         $values['DB_HOST'] = $io->askAndValidate(
@@ -101,6 +102,19 @@ class Installer
             $values['DB_PASSWORD'] == 'wppass';
         }
 
+        $values['PORT'] = $io->askAndValidate(
+            "Please provide a port to the webserver if you do not want to use the default: ",
+            function($value){
+                if (! filter_var($value, FILTER_SANITIZE_NUMBER_INT)) {
+                    throw new \UnexpectedValueException('Invalid');
+                }
+
+                return $value;
+            },
+            5,
+            8080
+        );
+
         $dist = file_get_contents($configfile . '.dist');
         $dist = str_replace(
             array_map(function($item){
@@ -124,6 +138,14 @@ class Installer
         $fh = fopen(__DIR__ . '/../Vagrantfile', 'w+');
         fwrite($fh, $vagrant);
         fclose($fh);
+
+        $io->write('Starting virtual machine');
+        exec("vagrant up");
+
+        $io->write(sprintf(
+            'You can now open the URL <success>http://127.0.0.1:%s</success> in your favourite WebBroweser',
+            $values['PORT']
+        ));
 
         return true;
 

@@ -38,10 +38,12 @@ define('DB_CHARSET', '%DB_CHARSET%');
 define('DB_COLLATE', '%DB_COLLATE%');
 
 define('ABSPATH', __DIR__ . '/wp/');
-define('WP_SITEURL', 'http://127.0.0.1:8080/wp');
-define('WP_HOME', 'http://127.0.0.1:8080/');
+define('WP_SITEURL', 'http://127.0.0.1:%PORT%/wp');
+define('WP_HOME', 'http://127.0.0.1:%PORT%/');
 define('WP_CONTENT_DIR', __DIR__ . '/wp-content');
-define('WP_CONTENT_URL', 'http://127.0.0.1:8080/wp-content');
+define('WP_CONTENT_URL', 'http://127.0.0.1:%PORT%/wp-content');
+define('WP_PLUGIN_DIR', __DIR__ . '/wp-plugins');
+define('WP_PLUGIN_URL', WP_HOME . '/wp-plugins');
 
 /**#@+
  * Authentication Unique Keys and Salts.
