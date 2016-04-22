@@ -31,6 +31,6 @@
     "name" : "Andreas Heigl",
     "email" : "andreas@heigl.org"
   }],
-  "description" : "setup a wordpress with one terminal-command",
+  "description" : "setup a wordpress with one terminal-command: composer create-project org_heigl/wordpress_bootstrap my-wordpress-folder",
   "keywords": ["wordpress", "setup", "vagrant", "easy"]
 }
