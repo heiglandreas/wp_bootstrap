@@ -43,6 +43,7 @@ WP
 
 $composer = <<COMPOSER
 sudo curl -o /usr/local/bin/composer https://getcomposer.org/download/1.0.0/composer.phar
+sudo chmod 755 /usr/local/bin/composer
 sudo /usr/local/bin/composer self-update
 COMPOSER
 

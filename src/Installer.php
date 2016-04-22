@@ -140,12 +140,16 @@ class Installer
         fclose($fh);
 
         $io->write('Starting virtual machine');
-        exec("vagrant up");
+        exec("vagrant up", $output, $returnVal);
 
-        $io->write(sprintf(
-            'You can now open the URL <success>http://127.0.0.1:%s</success> in your favourite WebBrowser',
-            $values['PORT']
-        ));
+        if (0 == $returnVal) {
+            $io->write(sprintf(
+                'You can now open the URL <success>http://127.0.0.1:%s</success> in your favourite WebBrowser',
+                $values['PORT']
+            ));
+        } else {
+            $io->write(implode("\n", $output));
+        }
 
         return true;
 
