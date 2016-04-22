@@ -41,15 +41,26 @@ for i in `wp theme list --allow-root --field=name`; do wp theme activate $i --al
 for i in `wp plugin list --allow-root --field=name`; do wp plugin activate $i --allow-root; done;
 WP
 
+$composer = <<COMPOSER
+sudo curl -o /usr/local/bin/composer https://getcomposer.org/download/1.0.0/composer.phar
+sudo /usr/local/bin/composer self-update
+COMPOSER
+
 Vagrant.configure(2) do |config|
-  config.vm.box = 'chef/ubuntu-14.04'
+  config.vm.box = 'ubuntu/trusty64'
+
+  config.vm.provider "virtualbox" do |v|
+    v.memory = 1024
+    v.cpus = 1
+  end
 
   # LDAP port
-  config.vm.network 'forwarded_port', guest: 80, host: 8080
+  config.vm.network 'forwarded_port', guest: 80, host: %PORT%
 
   config.vm.provision 'shell', inline: $install
   config.vm.provision 'shell', inline: $configure
   config.vm.provision 'shell', inline: $mysql
+  config.vm.provision 'shell', inline: $composer
   config.vm.provision 'shell', inline: $wp
 
   config.vm.synced_folder "./", "/vagrant/, id: "vagrant-root",
