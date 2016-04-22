@@ -25,5 +25,12 @@
     "psr-4" : {
       "Org_Heigl\\Wordpress\\Bootstrap\\" : "src/"
     }
-  }
+  },
+  "license" : "MIT",
+  "authors" : [{
+    "name" : "Andreas Heigl",
+    "email" : "andreas@heigl.org"
+  }],
+  "description" : "setup a wordpress with one terminal-command",
+  "keywords": ["wordpress", "setup", "vagrant", "easy"]
 }
