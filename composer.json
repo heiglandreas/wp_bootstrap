@@ -16,7 +16,10 @@
     "wpackagist-plugin/wp-cfm": "dev-trunk"
   },
   "extra": {
-    "wordpress-install-dir": "wp"
+    "wordpress-install-dir": "wp",
+    "installer-paths" : {
+      "wp-plugins/{$name}" : ["type:wordpress-plugin"]
+    }
   },
   "scripts": {
     "post-create-project-cmd": "Org_Heigl\\Wordpress\\Bootstrap\\Installer::postCreateProject"
