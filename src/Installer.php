@@ -54,9 +54,16 @@ class Installer
             'PORT' => '8080'
         ];
 
+
+        $useVagrant = $io->askConfirmation(
+            "Do you want to use vagrant? : ",
+            true
+        );
+
+        // ok, continue on to composer install
         $values['DB_HOST'] = $io->askAndValidate(
             "Please provide the FQDN for the database-server (localhost): ",
-            function($value){
+            function ($value) {
                 if (! filter_var($value, FILTER_SANITIZE_STRING)) {
                     throw new \UnexpectedValueException('Not an URL');
                 }
@@ -65,12 +72,12 @@ class Installer
             },
             5,
             'localhost'
-            );
-            // ok, continue on to composer install
+        );
+        // ok, continue on to composer install
 
         $values['DB_NAME'] = $io->askAndValidate(
             "Please provide the name of the database for wordpress (wordpress): ",
-            function($value){
+            function ($value) {
                 if (! filter_var($value, FILTER_SANITIZE_STRING)) {
                     throw new \UnexpectedValueException('Invalid');
                 }
@@ -83,7 +90,7 @@ class Installer
 
         $values['DB_USER'] = $io->askAndValidate(
             "Please provide a username with access to the database (wpuser): ",
-            function($value){
+            function ($value) {
                 if (! filter_var($value, FILTER_SANITIZE_STRING)) {
                     throw new \UnexpectedValueException('Invalid');
                 }
@@ -98,57 +105,73 @@ class Installer
             "Please provide the password for this user (wppass): "
         );
 
-        if (! $values['DB_PASSWORD']) {
+        if (! trim($values['DB_PASSWORD'])) {
             $values['DB_PASSWORD'] == 'wppass';
         }
 
-        $values['PORT'] = $io->askAndValidate(
-            "Please provide a port to the webserver if you do not want to use the default (8080): ",
-            function($value){
-                if (! filter_var($value, FILTER_SANITIZE_NUMBER_INT)) {
-                    throw new \UnexpectedValueException('Invalid');
-                }
+        if ($useVagrant) {
 
-                return $value;
-            },
-            5,
-            8080
-        );
+            $values['PORT'] = $io->askAndValidate(
+                "Please provide a port to the webserver if you do not want to use the default (8080): ",
+                function ($value) {
+                    if (! filter_var($value, FILTER_SANITIZE_NUMBER_INT)) {
+                        throw new \UnexpectedValueException('Invalid');
+                    }
+
+                    return $value;
+                },
+                5,
+                8080
+            );
+        }
+
 
         $dist = file_get_contents($configfile . '.dist');
         $dist = str_replace(
-            array_map(function($item){
+            array_map(function ($item) {
                 return '%' . $item . '%';
-            },array_keys($values)),
+            }, array_keys($values)),
             array_values($values),
             $dist
         );
-        $fh = fopen($configfile, 'w+');
+        $fh   = fopen($configfile, 'w+');
         fwrite($fh, $dist);
         fclose($fh);
 
-        $vagrant = file_get_contents(__DIR__ . '/../Vagrantfile.dist');
-        $vagrant = str_replace(
-            array_map(function($item){
-                return '%' . $item . '%';
-            },array_keys($values)),
-            array_values($values),
-            $vagrant
-        );
-        $fh = fopen(__DIR__ . '/../Vagrantfile', 'w+');
-        fwrite($fh, $vagrant);
-        fclose($fh);
+        if ($useVagrant) {
+            $vagrant = file_get_contents(__DIR__ . '/../Vagrantfile.dist');
+            $vagrant = str_replace(
+                array_map(function ($item) {
+                    return '%' . $item . '%';
+                }, array_keys($values)),
+                array_values($values),
+                $vagrant
+            );
+            $fh      = fopen(__DIR__ . '/../Vagrantfile', 'w+');
+            fwrite($fh, $vagrant);
+            fclose($fh);
 
-        $io->write('Starting virtual machine');
-        exec("vagrant up", $output, $returnVal);
+            $io->write('Starting virtual machine');
+            exec("vagrant up", $output, $returnVal);
 
-        if (0 == $returnVal) {
-            $io->write(sprintf(
-                'You can now open the URL <success>http://127.0.0.1:%s</success> in your favourite WebBrowser',
-                $values['PORT']
-            ));
+            if (0 == $returnVal) {
+                exec("vagrant ssh -c 'cd /vagrant && sh vendor/bin/wp core install --url=\"127.0.0.1\" --allow-root --title=\"Title\" --admin_user=\"wpadmin\" --admin_password=\"password\" --admin_email=\"me@example.com\"'");
+                exec("vagrant ssh -c 'cd /vagrant && for i in `sh vendor/bin/wp theme list --allow-root --field=name`; do sh vendor/bin/wp theme activate \$i --allow-root; done'");
+                exec("vagrant ssh -c 'cd /vagrant &&    for i in `sh vendor/bin/wp plugin list --allow-root --field=name`; do sh vendor/bin/wp plugin activate \$i --allow-root; done'");
+                $io->write(sprintf(
+                    'You can now open the URL <success>http://127.0.0.1:%s</success> in your favourite WebBrowser',
+                    $values['PORT']
+                ));
+            } else {
+
+                $io->write('Something went wrong');
+            }
         } else {
-            $io->write(implode("\n", $output));
+            exec('cd "' . __DIR__ . '/.." && ./vendor/bin/wp core install --url="127.0.0.1" --allow-root --title="Title" --admin_user="wpadmin" --admin_password="password" --admin_email="me@example.com"');
+            exec('cd "' . __DIR__ . '/.." && for i in `./vendor/bin/wp theme list --allow-root --field=name`; do ./vendor/bin/wp theme activate $i --allow-root; done');
+            exec('cd "' . __DIR__ . '/.." && for i in `./vendor/bin/wp plugin list --allow-root --field=name`; do ./vendor/bin/wp plugin activate $i --allow-root; done');
+            exec('cd "' . __DIR__ . '/.." && for i in `./vendor/bin/wp config bundles`; do ./vendor/bin/wp config pull $i --allow-root; done;');
+            $io->write("You should now be able to visit your wordpress-installation");
         }
 
         return true;
@@ -157,7 +180,6 @@ class Installer
 
     public static function postInstall(Event $event)
     {
-        exec('wp config pull all');
+        exec('cd "' . __DIR__ . '/.." && for i in `ls config`; do i=`echo $i | sed "s/\.json//"`; ./vendor/bin/wp config pull $i --allow-root; done');
     }
-
 }

@@ -5,7 +5,7 @@
   "repositories": [
     {
       "type": "composer",
-      "url": "http://wpackagist.org"
+      "url": "https://wpackagist.org"
     }
   ],
   "require": {
@@ -14,7 +14,7 @@
     "wpackagist-theme/twentyfourteen": "^1.5",
     "org_heigl/talk_to_composer": "dev-master",
     "wpackagist-plugin/wp-cfm": "dev-trunk",
-    "wp-cli/wp-cli" : "^0.22"
+    "wp-cli/wp-cli": "^0.24.1"
   },
   "extra": {
     "wordpress-install-dir": "wp",
