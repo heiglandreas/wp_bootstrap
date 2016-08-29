@@ -155,4 +155,9 @@ class Installer
 
     }
 
+    public static function postInstall(Event $event)
+    {
+        exec('wp config pull all');
+    }
+
 }
