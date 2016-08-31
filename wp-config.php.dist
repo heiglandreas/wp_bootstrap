@@ -39,10 +39,10 @@ define('DB_COLLATE', '%DB_COLLATE%');
 if (! defined('ABSPATH')) {
     define('ABSPATH', __DIR__ . '/wp/');
 }
-define('WP_SITEURL', 'http://127.0.0.1:%PORT%/wp');
-define('WP_HOME', 'http://127.0.0.1:%PORT%/');
+define('WP_HOME', 'http://127.0.0.1:%PORT%');
+define('WP_SITEURL', WP_HOME . '/wp');
 define('WP_CONTENT_DIR', __DIR__ . '/content');
-define('WP_CONTENT_URL', 'http://127.0.0.1:%PORT%/content');
+define('WP_CONTENT_URL', WP_HOME . '/content');
 define('WP_PLUGIN_DIR', __DIR__ . '/plugins');
 define('WP_PLUGIN_URL', WP_HOME . '/plugins');
 define('WPCFM_CONFIG_DIR', __DIR__ . '/config');
