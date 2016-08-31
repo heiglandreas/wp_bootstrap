@@ -45,8 +45,8 @@ class Installer
         }
 
         $values = [
-            'DB_COLLATE' => 'utf8_bin',
-            'DB_CHARSET' => 'utf8',
+            'DB_COLLATE' => 'utf8mb4_bin',
+            'DB_CHARSET' => 'utf8mb4',
             'DB_HOST' => '',
             'DB_USER' => '',
             'DB_PASSWORD' => '',
