@@ -157,7 +157,7 @@ class Installer
             if (0 == $returnVal) {
                 exec("vagrant ssh -c 'cd /vagrant && sh vendor/bin/wp core install --url=\"127.0.0.1\" --allow-root --title=\"Title\" --admin_user=\"wpadmin\" --admin_password=\"password\" --admin_email=\"me@example.com\"'");
                 exec("vagrant ssh -c 'cd /vagrant && for i in `sh vendor/bin/wp theme list --allow-root --field=name`; do sh vendor/bin/wp theme activate \$i --allow-root; done'");
-                exec("vagrant ssh -c 'cd /vagrant &&    for i in `sh vendor/bin/wp plugin list --allow-root --field=name`; do sh vendor/bin/wp plugin activate \$i --allow-root; done'");
+                exec("vagrant ssh -c 'cd /vagrant && for i in `sh vendor/bin/wp plugin list --allow-root --field=name`; do sh vendor/bin/wp plugin activate \$i --allow-root; done'");
                 $io->write(sprintf(
                     'You can now open the URL <success>http://127.0.0.1:%s</success> in your favourite WebBrowser',
                     $values['PORT']
@@ -170,7 +170,7 @@ class Installer
             exec('cd "' . __DIR__ . '/.." && ./vendor/bin/wp core install --url="127.0.0.1" --allow-root --title="Title" --admin_user="wpadmin" --admin_password="password" --admin_email="me@example.com"');
             exec('cd "' . __DIR__ . '/.." && for i in `./vendor/bin/wp theme list --allow-root --field=name`; do ./vendor/bin/wp theme activate $i --allow-root; done');
             exec('cd "' . __DIR__ . '/.." && for i in `./vendor/bin/wp plugin list --allow-root --field=name`; do ./vendor/bin/wp plugin activate $i --allow-root; done');
-            exec('cd "' . __DIR__ . '/.." && for i in `./vendor/bin/wp config bundles`; do ./vendor/bin/wp config pull $i --allow-root; done;');
+            exec('cd "' . __DIR__ . '/.." && for i in `ls config`; do i=`echo $i | sed "s/\.json//"`; ./vendor/bin/wp config pull $i --allow-root; done;');
             $io->write("You should now be able to visit your wordpress-installation");
         }
 
