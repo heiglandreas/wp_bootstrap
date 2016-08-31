@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ee5b2adcef29a75341b552bf13c95267",
-    "content-hash": "15e2eb39f7048781d5de2f3313268e98",
+    "hash": "89c318c6ff9ed0faae34820b2f41fdfd",
+    "content-hash": "a50793a1918a219ed8e63a8760b357dd",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -653,16 +653,16 @@
         },
         {
             "name": "org_heigl/talk_to_composer",
-            "version": "dev-master",
+            "version": "1.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/heiglandreas/wp_talkToComposer.git",
-                "reference": "2185d57dc109eb0bfbb0ecdbe7a22e60cfee394d"
+                "reference": "588049ae49cdea0d180a9dcbae1d9649acfc8d4c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/heiglandreas/wp_talkToComposer/zipball/2185d57dc109eb0bfbb0ecdbe7a22e60cfee394d",
-                "reference": "2185d57dc109eb0bfbb0ecdbe7a22e60cfee394d",
+                "url": "https://api.github.com/repos/heiglandreas/wp_talkToComposer/zipball/588049ae49cdea0d180a9dcbae1d9649acfc8d4c",
+                "reference": "588049ae49cdea0d180a9dcbae1d9649acfc8d4c",
                 "shasum": ""
             },
             "require": {
@@ -697,7 +697,7 @@
                 "wordpress",
                 "wp"
             ],
-            "time": "2016-08-29 20:04:32"
+            "time": "2016-08-31 07:17:16"
         },
         {
             "name": "psr/log",
@@ -1686,7 +1686,6 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "org_heigl/talk_to_composer": 20,
         "wpackagist-plugin/wp-cfm": 20
     },
     "prefer-stable": false,

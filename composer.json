@@ -12,7 +12,7 @@
     "php": ">=5.4",
     "johnpbloch/wordpress": "^4.3",
     "wpackagist-theme/twentyfourteen": "^1.5",
-    "org_heigl/talk_to_composer": "dev-master",
+    "org_heigl/talk_to_composer": "^1.0",
     "wpackagist-plugin/wp-cfm": "dev-trunk",
     "wp-cli/wp-cli": "^0.24.1"
   },
