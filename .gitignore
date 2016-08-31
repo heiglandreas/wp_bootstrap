@@ -2,4 +2,6 @@ vendor
 Vagrantfile
 wp-config.php
 wp
-wp-content
+content
+themes
+plugins

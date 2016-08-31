@@ -5,7 +5,7 @@
   "repositories": [
     {
       "type": "composer",
-      "url": "http://wpackagist.org"
+      "url": "https://wpackagist.org"
     }
   ],
   "require": {
@@ -13,16 +13,19 @@
     "johnpbloch/wordpress": "^4.3",
     "wpackagist-theme/twentyfourteen": "^1.5",
     "org_heigl/talk_to_composer": "dev-master",
-    "wpackagist-plugin/wp-cfm": "dev-trunk"
+    "wpackagist-plugin/wp-cfm": "dev-trunk",
+    "wp-cli/wp-cli": "^0.24.1"
   },
   "extra": {
     "wordpress-install-dir": "wp",
     "installer-paths" : {
-      "wp-plugins/{$name}" : ["type:wordpress-plugin"]
+      "plugins/{$name}" : ["type:wordpress-plugin"],
+      "themes/{$name}" : ["type:wordpress-theme"]
     }
   },
   "scripts": {
-    "post-create-project-cmd": "Org_Heigl\\Wordpress\\Bootstrap\\Installer::postCreateProject"
+    "post-create-project-cmd": "Org_Heigl\\Wordpress\\Bootstrap\\Installer::postCreateProject",
+    "post-install-cmd" : "Org_Heigl\\Wordpress\\Bootstrap\\Installer::postInstall"
   },
   "autoload" : {
     "psr-4" : {
