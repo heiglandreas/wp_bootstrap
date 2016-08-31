@@ -106,7 +106,7 @@ class Installer
         );
 
         if (! trim($values['DB_PASSWORD'])) {
-            $values['DB_PASSWORD'] == 'wppass';
+            $values['DB_PASSWORD'] = 'wppass';
         }
 
         if ($useVagrant) {
