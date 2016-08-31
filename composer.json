@@ -1,7 +1,7 @@
 {
   "name": "org_heigl/wordpress_bootstrap",
   "type" : "project",
-  "minimum-stability" : "dev",
+  "minimum-stability" : "stable",
   "repositories": [
     {
       "type": "composer",
